@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: api
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:bolero
+    username: sa
+    password: sags
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/changelog-master.yaml
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    properties:
+      hibernate:
+        use_sql_comments: true
+        format_sql: true
+  h2:
+    console:
+      enabled: true
+      path: /console
+server:
+  servlet:
+    contextPath: /api
+management:
+  endpoint:
+    health:
+      show-details: never
+automation-testing:
+  server-info:
+    uri: 'http://localhost'
+    port: 8080

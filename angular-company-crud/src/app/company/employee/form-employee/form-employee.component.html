@@ -1,0 +1,83 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">{{ title }}</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="formEmployee">
+        <div class="form-group row mt-3" [hidden]="!showEmployeeId">
+            <label for="name" class="form-label col">Employee Id :</label>
+            <div class="container col-7">
+                <input type="text" class="form-control cursor-not-allowed" id="id" formControlName="id" readonly />
+            </div>
+        </div>
+        <div class="form-group row mt-3">
+            <label for="name" class="form-label col">First Name :</label>
+            <div class="container col-7">
+                <input type="text" class="form-control" id="firstName" placeholder="first name"
+                    formControlName="firstName" />
+                <div
+                    *ngIf="formEmployee.controls['firstName'].invalid && (formEmployee.controls['firstName'].dirty || formEmployee.controls['firstName'].touched)">
+                    <small class="text-danger">First Name is required.</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row mt-3">
+            <label for="name" class="form-label col">Last Name :</label>
+            <div class="container col-7">
+                <input type="text" class="form-control" id="lastName" placeholder="last name"
+                    formControlName="lastName" />
+                <div
+                    *ngIf="formEmployee.controls['lastName'].invalid && (formEmployee.controls['lastName'].dirty || formEmployee.controls['lastName'].touched)">
+                    <small class="text-danger">Last Name is required.</small>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row mt-3">
+            <label for="name" class="form-label col">Email Address :</label>
+            <div class="container col-7">
+                <input type="email" class="form-control" id="emailAddress" placeholder="email address"
+                    formControlName="emailAddress" />
+                <div
+                    *ngIf="formEmployee.controls['emailAddress'].invalid && (formEmployee.controls['emailAddress'].dirty || formEmployee.controls['emailAddress'].touched)">
+                    <small class="text-danger">Please provide a valid email address.</small>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group row mt-3">
+            <label for="name" class="form-label col">Departments:</label>
+            <div class="container col-7">
+                <!-- <mat-select formControlName="departments" multiple>
+                <mat-option *ngFor="let department of departmentList" [value]="department">{{
+                    department.name
+                    }}</mat-option>
+            </mat-select> -->
+                <!-- <ng-select class="form-ng-select" [multiple]=true id="departments" formControlName="departments"
+                [(ngModel)]="selectedDepartmentList">
+                <ng-option *ngFor="let department of departmentList"
+                    [value]="department">{{department.name}}</ng-option>
+            </ng-select> -->
+                <ng-multiselect-dropdown class="form-ng-select" [placeholder]="'Departments'"
+                    [settings]="dropdownSettings" [data]="departmentList" [(ngModel)]="selectedDepartmentList"
+                    (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)"
+                    formControlName="departments"></ng-multiselect-dropdown>
+                <div
+                    *ngIf="formEmployee.controls['departments'].invalid && (formEmployee.controls['departments'].dirty || formEmployee.controls['departments'].touched)">
+                    <small class="text-danger">Please add all required departments.</small>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" (click)="closeModal()" class="btn btn-secondary w-25">
+        Back
+    </button>
+    <button type="button" (click)="submit()" class="btn btn-danger w-25" [disabled]="formEmployee.invalid">
+        Submit
+    </button>
+</div>

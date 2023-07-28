@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_employee_department
+      author: Ashish
+      changes:
+        - createTable:
+            tableName: map_employee_department
+            columns:
+              - column:
+                  name: id_employee
+                  type: long
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: employee_department_pk
+                    nullable: false
+              - column:
+                  name: id_department
+                  type: long
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: employee_department_pk
+                    nullable: false

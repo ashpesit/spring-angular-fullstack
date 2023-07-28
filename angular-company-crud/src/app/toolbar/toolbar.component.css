@@ -1,0 +1,15 @@
+.spacer {
+    flex: 1;
+    margin: 0 auto;
+}
+
+.toolbar-style mat-toolbar {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.icon-display {
+    transform: scale(1.5);
+    margin-top: 6%;
+    margin-right: 5%;
+}

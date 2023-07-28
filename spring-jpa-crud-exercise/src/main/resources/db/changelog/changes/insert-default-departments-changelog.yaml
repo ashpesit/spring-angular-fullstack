@@ -1,0 +1,65 @@
+databaseChangeLog:
+  - changeSet:
+      id: defaultDataSet
+      author: Ashish
+      changes:
+        - insert:
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: name
+                  value: Organisation
+              - column:
+                  name: required
+                  value: true
+              - column:
+                  name: read_only
+                  value: true
+            tableName: department
+        - insert:
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: name
+                  value: HR-internal
+              - column:
+                  name: required
+                  value: false
+              - column:
+                  name: read_only
+                  value: true
+            tableName: department
+        - insert:
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: name
+                  value: Marketing
+              - column:
+                  name: required
+                  value: false
+              - column:
+                  name: read_only
+                  value: false
+            tableName: department
+        - insert:
+            columns:
+              - column:
+                  name: id
+                  value: 4
+              - column:
+                  name: name
+                  value: Devops
+              - column:
+                  name: required
+                  value: false
+              - column:
+                  name: read_only
+                  value: false
+            tableName: department

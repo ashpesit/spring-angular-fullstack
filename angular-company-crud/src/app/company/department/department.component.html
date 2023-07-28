@@ -1,0 +1,66 @@
+<div class="entire w-auto p-5">
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="table">
+
+      <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Id Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Read Only Column -->
+      <ng-container matColumnDef="readOnly">
+        <th mat-header-cell *matHeaderCellDef> Read Only </th>
+        <td mat-cell *matCellDef="let element">
+          <span class="material-icons" [hidden]="!element.readOnly" [class.text-success]="element.readOnly">check</span>
+          <span class="material-icons" [hidden]="element.readOnly" [class.text-danger]="!element.readOnly">close</span>
+        </td>
+      </ng-container>
+
+      <!-- Required Column -->
+      <ng-container matColumnDef="required">
+        <th mat-header-cell *matHeaderCellDef> Required </th>
+        <td mat-cell *matCellDef="let element">
+          <span class="material-icons" [hidden]="!element.required" [class.text-success]="element.required">check</span>
+          <span class="material-icons" [hidden]="element.required" [class.text-danger]="!element.required">close</span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="action-buttons">
+            <button class="bg-transparent border-0" mat-button (click)="updateDepartment(element)">
+              <span class="material-symbols-outlined text-info">
+                edit
+              </span>
+            </button>
+            <button class="bg-transparent border-0" mat-button [disabled]="element.readOnly"
+              (click)="deleteDepartment(element)">
+              <span class="material-symbols-outlined" [class.text-danger]="!element.readOnly">
+                delete_forever
+              </span>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [length]="totalRows" [pageIndex]="currentPage" [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions" (page)="handlePageEvent($event)" aria-label="Select page">
+    </mat-paginator>
+  </div>
+  <div class="create-button float-end">
+    <button type="button" class="btn btn-primary" (click)="createDepartment()"
+      style="cursor: pointer; margin: 45px;">Create New</button>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+databaseChangeLog:
+  - changeSet:
+      id: defaultDataSet
+      author: Ashish
+      changes:
+        - insert:
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: name_first
+                  value: Larry
+              - column:
+                  name: name_last
+                  value: Wise
+              - column:
+                  name: email_address
+                  value: wiseman@xyz.com
+            tableName: employee
+        - insert:
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: name_first
+                  value: Mike
+              - column:
+                  name: name_last
+                  value: Tyson
+              - column:
+                  name: email_address
+                  value: mike@xyz.com
+            tableName: employee
+        - insert:
+            columns:
+              - column:
+                  name: id_employee
+                  value: 1
+              - column:
+                  name: id_department
+                  value: 1
+            tableName: map_employee_department
+        - insert:
+            columns:
+              - column:
+                  name: id_employee
+                  value: 2
+              - column:
+                  name: id_department
+                  value: 1
+            tableName: map_employee_department
+        - insert:
+            columns:
+              - column:
+                  name: id_employee
+                  value: 2
+              - column:
+                  name: id_department
+                  value: 3
+            tableName: map_employee_department

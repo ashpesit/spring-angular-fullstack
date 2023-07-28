@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: addForeignKeyConstraint-employee-department
+      author: Ashish
+      dbms: '!h2, postgresql, mysql'
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: employee_id
+            baseTableName: employee_department
+            baseTableSchemaName: bolero
+            constraintName: fk_employee
+            deferrable: true
+            initiallyDeferred: true
+            onDelete: CASCADE
+            onUpdate: RESTRICT
+            referencedColumnNames: id
+            referencedTableName: employee
+            referencedTableSchemaName: bolero
+            validate: true
+        - addForeignKeyConstraint:
+            baseColumnNames: department_id
+            baseTableName: employee_department
+            baseTableSchemaName: bolero
+            constraintName: fk_department
+            deferrable: true
+            initiallyDeferred: true
+            onDelete: CASCADE
+            onUpdate: RESTRICT
+            referencedColumnNames: id
+            referencedTableName: department
+            referencedTableSchemaName: bolero
+            validate: true
+            #ALTER  TABLE  cat.address  ADD  CONSTRAINT  fk_address_person  FOREIGN  KEY  (person_id)  REFERENCES  cat.person  (id)  ON  UPDATE  RESTRICT  ON  DELETE  CASCADE  DEFERRABLE  INITIALLY  DEFERRED;

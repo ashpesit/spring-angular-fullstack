@@ -1,0 +1,34 @@
+databaseChangeLog:
+  - changeSet:
+      id: createDepartmentTable
+      author: Ashish
+      changes:
+        - createSequence:
+            sequenceName: department_sequence
+            startValue: 5
+            incrementBy: 1
+            minValue: 1
+            maxValue: 1000
+        - createTable:
+            tableName: department
+            columns:
+              - column:
+                  name: id
+                  type: long
+                  defaultValueComputed: "NEXTVAL('department_sequence')"
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    unique: true
+                    nullable: false
+                    uniqueConstraintName: constraint_unique_department_name
+              - column:
+                  name: required
+                  type: boolean
+              - column:
+                  name: read_only
+                  type: boolean

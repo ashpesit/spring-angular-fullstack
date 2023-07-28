@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_employee
+      author: Ashish
+      changes:
+        - createSequence:
+            sequenceName: employee_sequence
+            startValue: 5
+            incrementBy: 1
+            minValue: 1
+            maxValue: 1000
+        - createTable:
+            tableName: employee
+            columns:
+              - column:
+                  name: id
+                  type: long
+                  defaultValueComputed: "NEXTVAL('employee_sequence')"
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name_first
+                  type: varchar(255)
+              - column:
+                  name: name_last
+                  type: varchar(255)
+              - column:
+                  name: email_address
+                  type: varchar(255)

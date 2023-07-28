@@ -1,0 +1,37 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">{{title}}</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="formDepartment">
+        <div class="form-group row mt-3" [hidden]="!showIdInputField">
+            <label for="name" class="form-label col">Department Id :</label>
+            <input type="number" class="form-control cursor-not-allowed col" id="id" formControlName="id" readonly>
+        </div>
+        <div class="form-group row mt-3">
+            <label for="name" class="form-label col">Department Name :</label>
+            <input type="text" class="form-control col" id="name" placeholder="name" formControlName="name">
+            <div *ngIf="formDepartment.controls['name'].invalid && (formDepartment.controls['name'].dirty || formDepartment.controls['name'].touched)"
+                class="errorMsg">
+                <small class="text-danger">Name is required</small>
+            </div>
+        </div>
+        <div class="form-checkbox-wrapper row mt-3">
+            <label class="form-checkbox-lable col">Read Only : </label>
+            <input class="col" type="checkbox" id="readOnly" placeholder="readOnly" formControlName="readOnly">
+        </div>
+        <div class="form-checkbox-wrapper row mt-3">
+            <label class="form-checkbox-lable col">Required : </label>
+            <input class="col" type="checkbox" id="required" placeholder="required" formControlName="required">
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" (click)="closeModal()" class="btn btn-secondary w-25">
+        Back
+    </button>
+    <button type="button" (click)="submit()" class="btn btn-danger w-25"
+        [disabled]="formDepartment.invalid">Submit</button>
+</div>
